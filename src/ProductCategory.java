@@ -1,21 +1,21 @@
 
 public class ProductCategory {
 
-    private String categoryName;
+    private String name;
 
     public ProductCategory(){
 
     }
 
-    public ProductCategory(String categoryName){
-        this.categoryName = categoryName;
+    public ProductCategory(String name){
+        this.name = name;
     }
 
-    public String getCategoryName(){
-        return categoryName;
+    public String getName(){
+        return name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setName(String name) {
+        this.name = name;
     }
 }
