@@ -24,20 +24,16 @@ public class Order {
         this.orderTotal = getOrderTotal(this.quantitaty, this.product.getPrice());
     }
 
-    public void paymentMethodValidation(PaymentMethod paymentMethod, LocalDate orderDate){
+    public void paymentMethodValidation(PaymentMethod paymentMethod, LocalDate orderDate) throws CreditCardExcepton{
         if (paymentMethod instanceof CreditCard) {
             YearMonth creditCardValidThru = ((CreditCard) paymentMethod).getValidThru();
             YearMonth convertOrderDate = YearMonth.from(orderDate);
-            try {
                 if (creditCardValidThru.isAfter(convertOrderDate)) {
                     this.paymentMethod = paymentMethod;
                     this.paymentMethod.setPaymentValue(getOrderTotal(this.quantitaty, this.product.getPrice()));
                 } else {
                     throw new CreditCardException("Cartão de crédito expirado");
                 }
-            } catch (CreditCardException e) {
-                System.out.println(e.getExceptionMsg());
-            }
         } else {
             this.paymentMethod = paymentMethod;
             this.paymentMethod.setPaymentValue(getOrderTotal(this.quantitaty, this.product.getPrice()));
@@ -75,8 +71,12 @@ public class Order {
     }
 
     public void setOrderTotal(BigDecimal orderTotal) {
-        this.getPaymentMethod().setPaymentValue(orderTotal);
-        this.orderTotal = orderTotal;
+        if (this.paymentMethod != null) {
+            this.getPaymentMethod().setPaymentValue(orderTotal);
+            this.orderTotal = orderTotal;
+        } else {
+            throw new NullPointerException("O método de pagamento é nulo");
+        }
     }
 
     public PaymentMethod getPaymentMethod() {
