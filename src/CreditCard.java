@@ -3,15 +3,13 @@ import java.time.YearMonth;
 
 public class CreditCard extends PaymentMethod{
 
-    private String number, name;
-    private int cvv;
+    private String number;
+    private String name;
+    private String cvv;
     private YearMonth validThru;
 
-    public CreditCard(){
 
-    }
-
-    public CreditCard(String number, String name, int cvv, YearMonth validThru) {
+    public CreditCard(String number, String name, String cvv, YearMonth validThru) {
         this.number = number;
         this.name = name;
         this.cvv = cvv;
@@ -27,7 +25,7 @@ public class CreditCard extends PaymentMethod{
         return name;
     }
 
-    public int getCvv(){
+    public String getCvv(){
         return cvv;
     }
 
@@ -39,7 +37,7 @@ public class CreditCard extends PaymentMethod{
         this.number = number;
     }
 
-    public void setCvv(int cvv) {
+    public void setCvv(String cvv) {
         this.cvv = cvv;
     }
 
