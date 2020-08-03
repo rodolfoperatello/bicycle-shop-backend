@@ -2,18 +2,14 @@ import java.time.LocalDate;
 
 public class BankSlip extends PaymentMethod{
 
-    private String number;
+    private final String number;
     private final LocalDate creationDate;
     private final LocalDate expirationDate;
 
-    public BankSlip() {
+    public BankSlip(String number) {
+        this.number = number;
         this.creationDate = LocalDate.now();
         this.expirationDate = getCreationDate().plusDays(7);
-    }
-
-    public BankSlip(String number) {
-        this();
-        this.number = number;
     }
 
     public LocalDate getExpirationDate() {
@@ -28,6 +24,5 @@ public class BankSlip extends PaymentMethod{
         return creationDate;
     }
 
+
 }
-
-
