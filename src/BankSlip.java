@@ -28,10 +28,6 @@ public class BankSlip extends PaymentMethod{
         return creationDate;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
 }
 
 
