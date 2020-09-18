@@ -18,16 +18,19 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "O nome não pode ser nulo")
+    @NotBlank(message = "O nome não pode ser vazio")
     private String name;
     @Column(name = "last_name")
-    @NotBlank(message = "O sobrenome não pode ser nulo")
+    @NotNull(message = "O sobrenome não pode ser nulo")
+    @NotBlank(message = "O sobrenome não pode ser vazio")
     private String lastName;
-    @NotBlank(message = "O telefone principal não pode ser nulo")
+    @NotNull(message = "O telefone principal não pode ser nulo")
+    @NotBlank(message = "O telefone principal não pode ser vazio")
     private String mainPhone;
     private String secondaryPhone;
     private LocalDate birthday;
-    @NotBlank(message = "O endereço do cliente não pode ser nulo")
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @NotNull(message = "O endereço do cliente não pode ser nulo")
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer")
     private Collection<Adress> adressList;
 
