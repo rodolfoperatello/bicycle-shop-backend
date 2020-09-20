@@ -13,12 +13,10 @@ public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "O nome não pode ser nulo")
     @NotBlank(message = "O nome não pode ser vazio")
     private String name;
-    @NotNull(message = "A categoria não pode ser nulo")
     @OneToMany(mappedBy = "productCategory")
-    private Collection<Product> productList;
+    private Collection<@NotNull(message = "O produto não pode ser nulo") Product> productList;
 
     public ProductCategory() {
         this.productList = new ArrayList<>();

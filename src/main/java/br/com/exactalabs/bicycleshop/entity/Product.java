@@ -13,14 +13,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "O nome não pode ser nulo")
     @NotBlank(message = "O nome não pode ser vazio")
     private String name;
-    @NotNull(message = "A categoria não pode ser nulo")
+    @NotBlank(message = "A categoria não pode ser vazio")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "productCategory")
     private ProductCategory productCategory;
-    @NotNull(message = "O preço não pode ser nulo")
+    @NotBlank(message = "O preço não pode ser vazio")
     private BigDecimal price;
 
     public Product(String name, ProductCategory productCategory, BigDecimal price) {
