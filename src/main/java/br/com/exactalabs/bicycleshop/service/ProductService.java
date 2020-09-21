@@ -2,14 +2,14 @@ package br.com.exactalabs.bicycleshop.service;
 
 
 import br.com.exactalabs.bicycleshop.entity.Product;
+import br.com.exactalabs.bicycleshop.entity.ProductCategory;
 import br.com.exactalabs.bicycleshop.repository.ProductCategoryRepository;
 import br.com.exactalabs.bicycleshop.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.Collection;
 
 @Service
 public class ProductService {
@@ -27,10 +27,20 @@ public class ProductService {
         return pageRequest;
     }
 
-    @Transactional
-    public Product saveProduct(Product product) {
-        this.productCategoryRepository.save(product.getProductCategory());
-        return this.productRepository.save(product);
+    public ProductCategory findCategoryById(Long id){
+        return this.productCategoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+    }
+
+    public void deleteCategoryById(Long id) {
+        this.productCategoryRepository.deleteById(id);
+    }
+
+    public void updateCategory(ProductCategory productCategory) {
+        this.productCategoryRepository.save(productCategory);
+    }
+
+    public Product findProductById(Long id){
+        return this.productRepository.findById(id).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
     }
 
     public void deleteProductById(Long id) {
@@ -41,15 +51,12 @@ public class ProductService {
         return this.productRepository.save(product);
     }
 
-    public Product findProductById(Long id){
-        return this.productRepository.findById(id).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+    public Page<Product> findAllProducts(Integer pageNumber){
+        var pageRequest = PageRequest.of(pageNumber, 30, Sort.by("name").ascending());
+        return this.productRepository.findAll(pageRequest);
     }
 
-    public Collection<Product> findAllProducts(){
-        return this.productRepository.findAll();
-    }
-
-    public Page<Product> findAllProductByName(String name, Integer pageNumber){
+    public Page<Product> findAllProductsByName(String name, Integer pageNumber){
         var pageRequest = createPageRequest(pageNumber, 30);
         return this.productRepository.findAllProductByNameLikeOrderByNameAsc(name, pageRequest);
     }
@@ -68,14 +75,6 @@ public class ProductService {
         var pageRequest = createPageRequest(pageNumber, 30);
         return this.productRepository.findAllProductByOrderByPriceDesc(pageRequest);
     }
-
-
-//    public Collection<Product> findProductsByName(String name){
-//        return this.productRepository.findProductByName(name);
-//    }
-
-
-
 
 
 

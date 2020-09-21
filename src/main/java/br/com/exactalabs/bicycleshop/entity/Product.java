@@ -2,8 +2,10 @@ package br.com.exactalabs.bicycleshop.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 @Entity
@@ -15,12 +17,17 @@ public class Product {
     private Long id;
     @NotBlank(message = "O nome não pode ser vazio")
     private String name;
-    @NotBlank(message = "A categoria não pode ser vazio")
+    @NotNull(message = "A categoria não pode ser vazio")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "productCategory")
     private ProductCategory productCategory;
-    @NotBlank(message = "O preço não pode ser vazio")
+    @NotNull(message = "O valor não pode ser nulo")
+    @Min(value = 0, message = "O valor deve ser 0 ou maior")
     private BigDecimal price;
+
+    public Product(){
+
+    }
 
     public Product(String name, ProductCategory productCategory, BigDecimal price) {
         this.name = name;

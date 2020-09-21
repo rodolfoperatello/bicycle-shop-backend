@@ -15,15 +15,13 @@ public class ProductCategory {
     private Long id;
     @NotBlank(message = "O nome não pode ser vazio")
     private String name;
-    @OneToMany(mappedBy = "productCategory")
-    private Collection<@NotNull(message = "O produto não pode ser nulo") Product> productList;
+    @OneToMany(mappedBy = "productCategory", cascade = CascadeType.REMOVE)
+    private Collection<@NotNull(message = "O produto não pode ser nulo") Product> productList = new ArrayList<>();
 
-    public ProductCategory() {
-        this.productList = new ArrayList<>();
+    public ProductCategory (){
+
     }
-
     public ProductCategory(String name) {
-        this();
         this.name = name;
     }
 
