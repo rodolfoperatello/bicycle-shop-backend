@@ -32,6 +32,9 @@ public class Client {
     @JoinColumn(name = "customer")
     private Collection<@NotNull(message = "O endereço não pode ser nulo") Adress> adressList = new ArrayList<>();
 
+    public Client(){
+
+    }
 
     public Client(String name, String lastName, String mainPhone, String secondaryPhone, LocalDate birthday, Adress adress) {
         this.name = name;
