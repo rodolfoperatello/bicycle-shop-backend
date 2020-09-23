@@ -24,18 +24,15 @@ public class BicycleShopApplication {
 
             var clientService = appContext.getBean(ClientService.class);
 
-            var customerAdress = new Adress("My Street", "My District", "My City", "My State",
-                    "My ZipCode", "My Number");
-            var customerAdressEmpty = new Adress("", "", "", "",
-                    "", "");
-            var customer = new Client("Customer Name", "Customer LastName", "Customer Phone",
+            var customerAdress = new Adress("Rua Oliveira", "My District", "Rio de Janeiro", "Rio de Janeiro",
+                    "20972-200",  "1822");
+
+            var customer = new Client("Luiza", "Cavalcanti", "(21) 9744-8535",
                     "", LocalDate.of(1991, 10,10), customerAdress);
-            System.out.println(customer.getAdressList());
-            customer.addAdress(customerAdressEmpty);
-            //customer.addAdress(null);
+
 
             System.out.println(clientService.saveClient(customer));
-            //clientService.deleteClientById(100L);
+
 
 
             System.out.println("Spring bootado");
