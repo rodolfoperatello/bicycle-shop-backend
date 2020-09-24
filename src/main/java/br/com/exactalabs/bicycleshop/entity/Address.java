@@ -5,8 +5,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "adress")
-public class Adress {
+@Table(name = "address")
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,11 +25,11 @@ public class Adress {
     private String number;
 
 
-    public Adress(){
+    public Address(){
 
     }
 
-    public Adress(String street, String district, String city, String state, String zipcode, String number) {
+    public Address(String street, String district, String city, String state, String zipcode, String number) {
         this.street = street;
         this.district = district;
         this.city = city;

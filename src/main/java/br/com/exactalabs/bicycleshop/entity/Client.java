@@ -1,14 +1,8 @@
 package br.com.exactalabs.bicycleshop.entity;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.springframework.validation.annotation.Validated;
-
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,19 +28,19 @@ public class Client {
     @NotEmpty(message = "A lista não pode ser ser vazia")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
-    private Collection<Adress> adressList = new ArrayList<>();
+    private Collection<Address> addressList = new ArrayList<>();
 
     public Client(){
 
     }
 
-    public Client(String name, String lastName, String mainPhone, String secondaryPhone, LocalDate birthday,Adress adress) {
+    public Client(String name, String lastName, String mainPhone, String secondaryPhone, LocalDate birthday, Address address) {
         this.name = name;
         this.lastName = lastName;
         this.mainPhone = mainPhone;
         this.secondaryPhone = secondaryPhone;
         this.birthday = birthday;
-        this.addAdress(adress);
+        this.addAdress(address);
     }
 
     public Long getId() {
@@ -97,22 +91,22 @@ public class Client {
         this.birthday = birthday;
     }
 
-    public Collection<Adress> getAdressList() {
-        return adressList;
+    public Collection<Address> getAdressList() {
+        return addressList;
     }
 
-    public void setAdressList(Collection<Adress> adressList) {
-        this.adressList = adressList;
+    public void setAdressList(Collection<Address> addressList) {
+        this.addressList = addressList;
     }
 
-    public void addAdress(Adress adress) {
-        if (adress != null){
-            this.adressList.add(adress);
+    public void addAdress(Address address) {
+        if (address != null){
+            this.addressList.add(address);
         }
     }
 
-    public void removeAdress(Adress adress) {
-        this.adressList.remove(adress);
+    public void removeAdress(Address address) {
+        this.addressList.remove(address);
     }
 
     @Override
@@ -124,7 +118,7 @@ public class Client {
                 ", mainPhone='" + mainPhone + '\'' +
                 ", secondaryPhone='" + secondaryPhone + '\'' +
                 ", birthday=" + birthday +
-                ", adressList=" + adressList +
+                ", adressList=" + addressList +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
 package br.com.exactalabs.bicycleshop.service;
 
-import br.com.exactalabs.bicycleshop.entity.Adress;
+import br.com.exactalabs.bicycleshop.entity.Address;
 import br.com.exactalabs.bicycleshop.entity.Client;
 import br.com.exactalabs.bicycleshop.repository.AdressRepository;
 import br.com.exactalabs.bicycleshop.repository.ClientRepository;
@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
 
 @Service
 public class ClientService {
@@ -24,19 +23,19 @@ public class ClientService {
     }
 
 
-    public Adress saveAdress(Adress adress) {
-        return this.adressRepository.save(adress);
+    public Address saveAdress(Address address) {
+        return this.adressRepository.save(address);
     }
 
     public void deleteAdressById(Long id) {
         this.adressRepository.deleteById(id);
     }
 
-    public void updateAdress(Adress adress) {
-        this.adressRepository.save(adress);
+    public void updateAdress(Address address) {
+        this.adressRepository.save(address);
     }
 
-    public Adress findAdressById(Long id) {
+    public Address findAdressById(Long id) {
         return this.adressRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Endereço não encontrado"));
     }

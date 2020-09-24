@@ -1,6 +1,6 @@
 package br.com.exactalabs.bicycleshop;
 
-import br.com.exactalabs.bicycleshop.entity.Adress;
+import br.com.exactalabs.bicycleshop.entity.Address;
 import br.com.exactalabs.bicycleshop.entity.Client;
 import br.com.exactalabs.bicycleshop.service.ClientService;
 import org.springframework.boot.CommandLineRunner;
@@ -24,9 +24,9 @@ public class BicycleShopApplication {
 
             var clientService = appContext.getBean(ClientService.class);
 
-            var customerAdress = new Adress("Rua Oliveira", "My District", "Araxá", "Minas Gerais",
+            var customerAdress = new Address("Rua Oliveira", "My District", "Araxá", "Minas Gerais",
                     "38181-564",  "1652");
-            var customerAdress2 = new Adress("Rua Dezesseis", "My District", "Rio de Janeiro", "Rio de Janeiro",
+            var customerAdress2 = new Address("Rua Dezesseis", "My District", "Rio de Janeiro", "Rio de Janeiro",
                     "20972-200",  "1822");
 
             var customer = new Client("Luiza", "Cavalcanti", "(21) 9744-8535",
