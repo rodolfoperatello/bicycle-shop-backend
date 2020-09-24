@@ -29,7 +29,7 @@ public class Client {
     private String secondaryPhone;
     private LocalDate birthday;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer")
+    @JoinColumn(name = "customer_id")
     private Collection<@NotNull(message = "O endereço não pode ser nulo") Adress> adressList = new ArrayList<>();
 
     public Client(){
