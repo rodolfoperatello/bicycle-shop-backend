@@ -24,11 +24,15 @@ public class BicycleShopApplication {
 
             var clientService = appContext.getBean(ClientService.class);
 
-            var customerAdress = new Adress("Rua Oliveira", "My District", "Rio de Janeiro", "Rio de Janeiro",
+            var customerAdress = new Adress("Rua Oliveira", "My District", "Araxá", "Minas Gerais",
+                    "38181-564",  "1652");
+            var customerAdress2 = new Adress("Rua Dezesseis", "My District", "Rio de Janeiro", "Rio de Janeiro",
                     "20972-200",  "1822");
 
             var customer = new Client("Luiza", "Cavalcanti", "(21) 9744-8535",
-                    "", LocalDate.of(1991, 10,10), customerAdress);
+                    "", LocalDate.of(1991, 10,10), null);
+            customer.addAdress(null);
+
 
 
             System.out.println(clientService.saveClient(customer));
