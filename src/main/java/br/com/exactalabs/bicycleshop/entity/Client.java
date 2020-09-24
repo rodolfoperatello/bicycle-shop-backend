@@ -25,12 +25,14 @@ public class Client {
     @NotBlank(message = "O sobrenome não pode ser vazio")
     private String lastName;
     @NotBlank(message = "O telefone principal não pode ser vazio")
+    @Column(name = "main_phone")
     private String mainPhone;
+    @Column(name = "secondary_phone")
     private String secondaryPhone;
     private LocalDate birthday;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
-    private Collection<@NotNull(message = "O endereço não pode ser nulo") Adress> adressList = new ArrayList<>();
+    private Collection<Adress> adressList = new ArrayList<>();
 
     public Client(){
 
@@ -100,6 +102,7 @@ public class Client {
     public void setAdressList(Collection<Adress> adressList) {
         this.adressList = adressList;
     }
+
 
     public void addAdress(Adress adress) {
         this.adressList.add(adress);

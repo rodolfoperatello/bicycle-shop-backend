@@ -22,7 +22,6 @@ public class Adress {
     @NotBlank(message = "O CEP não pode ser vazio")
     private String zipcode;
     @NotBlank(message = "O número não pode ser vazio")
-    @Column(name = "adressnumber")
     private String number;
 
 
