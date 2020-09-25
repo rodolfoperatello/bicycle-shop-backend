@@ -8,13 +8,14 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "payment")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class PaymentMethod {
+public abstract class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull(message = "O valor do pagamento não pode ser nulo")
     @PositiveOrZero(message = "O valor do pagamento deve ser maior ou igual a 0")
+    @Column(name = "payment_value")
     private BigDecimal paymentValue;
 
     public Long getId() {

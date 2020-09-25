@@ -11,7 +11,7 @@ import java.time.YearMonth;
 
 @Entity
 @Table(name = "creditCard")
-public class CreditCard extends PaymentMethod{
+public class CreditCard extends Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
