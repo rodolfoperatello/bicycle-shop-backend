@@ -14,7 +14,6 @@ public class BankSlip extends PaymentMethod{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "O número não pode ser vazio")
-    @Column(name = "invoiceNumber")
     private String number;
     @NotNull(message = "A data de criação não pode ser nulo")
     @FutureOrPresent(message = "A data de criação não pode ser no passado")
