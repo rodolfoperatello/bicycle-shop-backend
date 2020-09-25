@@ -17,7 +17,6 @@ public class CreditCard extends PaymentMethod{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "O número não pode ser vazio")
-    @Column(name = "creditCardNumber")
     @CreditCardNumber(message = "Número inválido para cartão de crédito")
     private String number;
     @NotBlank(message = "O nome não pode ser vazio")
@@ -26,6 +25,7 @@ public class CreditCard extends PaymentMethod{
     @Length(min = 3, max = 3, message = "O CVV deve possuir 3 dígitos")
     private String cvv;
     @FutureOrPresent(message = "A data de validade não pode ser no passado")
+    @Column(name = "valid_thru")
     private LocalDate validThru;
 
     public CreditCard(){
