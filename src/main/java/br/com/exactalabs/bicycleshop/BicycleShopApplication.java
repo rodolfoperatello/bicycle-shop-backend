@@ -34,8 +34,9 @@ public class BicycleShopApplication {
             //customer.addAdress(null);
 
 
+            clientService.deleteCustomerById(178L);
 
-            System.out.println(clientService.saveClient(customer));
+            //System.out.println(clientService.saveCustomer(customer));
 
 
 

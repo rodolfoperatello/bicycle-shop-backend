@@ -2,7 +2,7 @@ package br.com.exactalabs.bicycleshop.service;
 
 import br.com.exactalabs.bicycleshop.entity.Address;
 import br.com.exactalabs.bicycleshop.entity.Customer;
-import br.com.exactalabs.bicycleshop.repository.AdressRepository;
+import br.com.exactalabs.bicycleshop.repository.AddressRepository;
 import br.com.exactalabs.bicycleshop.repository.CustomerRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,53 +15,59 @@ import javax.transaction.Transactional;
 public class CustomerService {
 
     private CustomerRepository customerRepository;
-    private AdressRepository adressRepository;
+    private AddressRepository addressRepository;
 
-    public CustomerService(CustomerRepository customerRepository, AdressRepository adressRepository) {
+    public CustomerService(CustomerRepository customerRepository, AddressRepository addressRepository) {
         this.customerRepository = customerRepository;
-        this.adressRepository = adressRepository;
+        this.addressRepository = addressRepository;
+    }
+
+    private PageRequest createPageRequest(Integer pageNumber, Integer size){
+        var pageRequest = PageRequest.of(pageNumber, size);
+        return pageRequest;
     }
 
 
-    public Address saveAdress(Address address) {
-        return this.adressRepository.save(address);
+    public void deleteAddressById(Long id) {
+        this.addressRepository.deleteById(id);
     }
 
-    public void deleteAdressById(Long id) {
-        this.adressRepository.deleteById(id);
+    public void updateAddress(Address address) {
+        this.addressRepository.save(address);
     }
 
-    public void updateAdress(Address address) {
-        this.adressRepository.save(address);
-    }
-
-    public Address findAdressById(Long id) {
-        return this.adressRepository.findById(id)
+    public Address findAddressById(Long id) {
+        return this.addressRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Endereço não encontrado"));
     }
 
+    public Page<Address> findAllAddress(Integer pageNumber) {
+        var pageRequest = createPageRequest(pageNumber, 30);
+        return this.addressRepository.findAll(pageRequest);
+    }
+
     @Transactional
-    public Customer saveClient(Customer customer) {
+    public Customer saveCustomer(Customer customer) {
         return this.customerRepository.save(customer);
     }
 
     @Transactional
-    public void deleteClientById(Long id) {
-        var client = this.customerRepository.findById(id)
+    public void deleteCustomerById(Long id) {
+        var customer = this.customerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
         this.customerRepository.deleteById(id);
     }
 
-    public void updateClient(Customer customer) {
+    public void updateCustomer(Customer customer) {
         this.customerRepository.save(customer);
     }
 
-    public Page<Customer> findAllClients(Integer pageNumber){
-        var pageRequest = PageRequest.of(pageNumber, 30);
+    public Page<Customer> findAllCustomers(Integer pageNumber){
+        var pageRequest = createPageRequest(pageNumber, 30);
         return this.customerRepository.findAll(pageRequest);
     }
 
-    public Customer findClientById(Long id){
+    public Customer findCustomerById(Long id){
         return this.customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
     }
 
