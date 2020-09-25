@@ -17,9 +17,11 @@ public class BankSlip extends PaymentMethod{
     private String number;
     @NotNull(message = "A data de criação não pode ser nulo")
     @FutureOrPresent(message = "A data de criação não pode ser no passado")
+    @Column(name = "creation_date")
     private LocalDate creationDate;
     @NotNull(message = "A data de vencimento não pode ser nulo")
     @FutureOrPresent(message = "A data de vencimento não pode ser no passado")
+    @Column(name = "expiration_date")
     private LocalDate expirationDate;
 
     public BankSlip(){
