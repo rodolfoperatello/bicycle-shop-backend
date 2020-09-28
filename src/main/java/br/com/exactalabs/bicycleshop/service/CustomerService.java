@@ -1,8 +1,6 @@
 package br.com.exactalabs.bicycleshop.service;
 
-import br.com.exactalabs.bicycleshop.entity.Address;
 import br.com.exactalabs.bicycleshop.entity.Customer;
-import br.com.exactalabs.bicycleshop.repository.AddressRepository;
 import br.com.exactalabs.bicycleshop.repository.CustomerRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,11 +13,10 @@ import javax.transaction.Transactional;
 public class CustomerService {
 
     private CustomerRepository customerRepository;
-    private AddressRepository addressRepository;
 
-    public CustomerService(CustomerRepository customerRepository, AddressRepository addressRepository) {
+
+    public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        this.addressRepository = addressRepository;
     }
 
     private PageRequest createPageRequest(Integer pageNumber, Integer size){
