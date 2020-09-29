@@ -12,9 +12,9 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "O nome não pode ser vazio")
+    @NotBlank(message = "O nome não pode estar vazio")
     private String name;
-    @NotNull(message = "A categoria não pode ser vazio")
+    @NotNull(message = "A categoria não pode estar vazia")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "productCategory")
     private ProductCategory productCategory;

@@ -13,7 +13,7 @@ public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "O nome não pode ser vazio")
+    @NotBlank(message = "O nome não pode estar vazio")
     private String name;
     @OneToMany(mappedBy = "productCategory", cascade = CascadeType.REMOVE)
     private Collection<@NotNull(message = "O produto não pode ser nulo") Product> productList = new ArrayList<>();
