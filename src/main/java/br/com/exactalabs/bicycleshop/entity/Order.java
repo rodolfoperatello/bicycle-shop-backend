@@ -27,8 +27,10 @@ public class Order {
     @NotNull(message = "O método de pagamento não pode ser nulo")
     private Payment payment;
     @FutureOrPresent(message = "A data da ordem de compra não pode ser no passado")
+    @Column(name = "order_date")
     private LocalDate orderDate;
     @PositiveOrZero(message = "O total da ordem deve ser maior ou igual a zero")
+    @Column(name = "order_total")
     private BigDecimal orderTotal;
     @Positive(message = "A quantidade de produtos deve ser maior que zero")
 
