@@ -11,6 +11,7 @@ import java.time.YearMonth;
 
 @Entity
 @Table(name = "creditCard")
+@PrimaryKeyJoinColumn(name = "payment_id")
 public class CreditCard extends Payment {
 
     @Id
