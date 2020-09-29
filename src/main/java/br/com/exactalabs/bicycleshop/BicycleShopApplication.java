@@ -1,7 +1,5 @@
 package br.com.exactalabs.bicycleshop;
 
-import br.com.exactalabs.bicycleshop.entity.Product;
-import br.com.exactalabs.bicycleshop.entity.ProductCategory;
 import br.com.exactalabs.bicycleshop.service.ProductService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,13 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-import java.math.BigDecimal;
-
 @SpringBootApplication
-public class BicycleAppProduct {
+public class BicycleShopApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BicycleAppProduct.class, args);
+        SpringApplication.run(BicycleShopApplication.class, args);
     }
 
     @Bean
