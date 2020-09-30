@@ -11,17 +11,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-@Table(name = "ordered")
+@Table(name = "`order`")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ordered_id")
+    @JoinColumn(name = "order_id")
     @NotEmpty(message = "A lista de itens do pedido não pode ser estar vazia")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private Collection<OrderedItem> orderedItems = new ArrayList<>();
+    private Collection<OrderItems> orderItems = new ArrayList<>();
     @OneToOne
     @JoinColumn(name = "customer_id")
     @NotNull(message = "O cliente não pode ser nulo")
@@ -49,22 +49,22 @@ public class Order {
         this.payment = payment;
     }
 
-    private void updateOrderTotal(OrderedItem orderedItem){
-        var productPrice = orderedItem.getProduct().getPrice();
-        var productQuantity = orderedItem.getQuantitaty();
+    private void updateOrderTotal(OrderItems orderItems){
+        var productPrice = orderItems.getProduct().getPrice();
+        var productQuantity = orderItems.getQuantitaty();
         this.orderTotal = this.orderTotal.add(productPrice.multiply(BigDecimal.valueOf(productQuantity)));
         this.payment.setPaymentValue(this.getOrderTotal());
     }
 
-    public void addOrderedItem(OrderedItem orderedItem){
-        if (orderedItem != null) {
-            this.orderedItems.add(orderedItem);
-            updateOrderTotal(orderedItem);
+    public void addOrderedItem(OrderItems orderItems){
+        if (orderItems != null) {
+            this.orderItems.add(orderItems);
+            updateOrderTotal(orderItems);
         }
     }
 
-    public void removeOrderedItem(OrderedItem orderedItem){
-        this.orderedItems.remove(orderedItem);
+    public void removeOrderedItem(OrderItems orderItems){
+        this.orderItems.remove(orderItems);
     }
 
 
@@ -76,12 +76,12 @@ public class Order {
         this.id = id;
     }
 
-    public Collection<OrderedItem> getOrderedItems() {
-        return orderedItems;
+    public Collection<OrderItems> getOrderedItems() {
+        return orderItems;
     }
 
-    public void setOrderedItems(Collection<OrderedItem> orderedItems) {
-        this.orderedItems = orderedItems;
+    public void setOrderedItems(Collection<OrderItems> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public Customer getCustomer() {
@@ -120,7 +120,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", orderedItems=" + orderedItems +
+                ", orderedItems=" + orderItems +
                 ", customer=" + customer +
                 ", payment=" + payment +
                 ", orderDate=" + orderDate +

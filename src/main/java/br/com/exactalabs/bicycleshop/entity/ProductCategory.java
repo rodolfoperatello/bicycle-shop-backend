@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-@Table(name = "productCategory")
+@Table(name = "product_category")
 public class ProductCategory {
 
     @Id
