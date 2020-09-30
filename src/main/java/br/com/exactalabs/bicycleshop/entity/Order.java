@@ -80,19 +80,19 @@ public class Order {
         this.orderedItems = orderedItems;
     }
 
-    public Customer getClient() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    public void setClient(Customer customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
-    public Payment getPaymentMethod() {
+    public Payment getPayment() {
         return payment;
     }
 
-    public void setPaymentMethod(Payment payment) {
+    public void setPayment(Payment payment) {
         this.payment = payment;
     }
 
@@ -112,14 +112,16 @@ public class Order {
         this.orderTotal = orderTotal;
     }
 
-//    public int getQuantitaty() {
-//        return quantitaty;
-//    }
-//
-//    public void setQuantitaty(int quantitaty) {
-//        this.quantitaty = quantitaty;
-//    }
-
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderedItems=" + orderedItems +
+                ", customer=" + customer +
+                ", payment=" + payment +
+                ", orderDate=" + orderDate +
+                ", orderTotal=" + orderTotal +
+                '}';
+    }
 }
 
