@@ -1,5 +1,8 @@
 package br.com.exactalabs.bicycleshop.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -17,6 +20,7 @@ public class Order {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ordered_id")
     @NotEmpty(message = "A lista de itens do pedido não pode ser estar vazia")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<OrderedItem> orderedItems = new ArrayList<>();
     @OneToOne
     @JoinColumn(name = "customer_id")
