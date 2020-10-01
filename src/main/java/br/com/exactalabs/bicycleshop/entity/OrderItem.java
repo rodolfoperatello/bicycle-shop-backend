@@ -12,14 +12,14 @@ public class OrderItem {
     @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
-    private int quantitaty;
+    private int quantity;
 
     public OrderItem(){
     }
 
-    public OrderItem(Product product, int quantitaty){
+    public OrderItem(Product product, int quantity){
         this.product = product;
-        this.quantitaty = quantitaty;
+        this.quantity = quantity;
     }
 
 
@@ -39,12 +39,12 @@ public class OrderItem {
         this.product = product;
     }
 
-    public int getQuantitaty() {
-        return quantitaty;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuantitaty(int quantitaty) {
-        this.quantitaty = quantitaty;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class OrderItem {
         return "OrderedItems{" +
                 "id=" + id +
                 ", product=" + product +
-                ", quantitaty=" + quantitaty +
+                ", quantitaty=" + quantity +
                 '}';
     }
 }

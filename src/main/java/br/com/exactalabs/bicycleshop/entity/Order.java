@@ -51,7 +51,7 @@ public class Order {
 
     private void updateOrderTotal(OrderItem orderItem){
         var productPrice = orderItem.getProduct().getPrice();
-        var productQuantity = orderItem.getQuantitaty();
+        var productQuantity = orderItem.getQuantity();
         this.orderTotal = this.orderTotal.add(productPrice.multiply(BigDecimal.valueOf(productQuantity)));
         this.payment.setPaymentValue(this.getOrderTotal());
     }
