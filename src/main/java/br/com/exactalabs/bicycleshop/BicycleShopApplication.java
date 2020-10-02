@@ -61,7 +61,6 @@ public class BicycleShopApplication {
                     .setComplement("Próximo ao centro")
                     .createAddress();
 
-
             var newCustomer = new CustomerBuilder()
                     .setName("José")
                     .setLastName("Pedro")
@@ -70,33 +69,34 @@ public class BicycleShopApplication {
                     .setSecondaryPhone("")
                     .setBirthday(LocalDate.of(2020,5,5))
                     .setEmail("josepedro@email.com")
-                    .setAdressList(addressList)
                     .addAddress(newAdress1)
                     .addAddress(newAdress2)
                     .createCustomer();
+
+            System.out.println(newCustomer);
 
             //customerService.saveCustomer(newCustomer);
 
 
 
 
-            var bikeMountain = productService.findProductById(340L);
-            var squeezer = productService.findProductById(344L);
-            var helmetDragonBorn = productService.findProductById(353L);
-
-            var orderedItens1 = new OrderItem(bikeMountain, 1);
-            var orderedItens2 = new OrderItem(squeezer, 1);
-            var orderedItens3 = new OrderItem(helmetDragonBorn, 1);
-
-            var creditCardCustomer1 = new CreditCard("4916396776205913", "Giovanna Gonçalves", "231", YearMonth.of(2030, 12));
-            var creditCardCustomer2 = new CreditCard("4539069995203095", "Luiza Cavalcanti", "771", YearMonth.of(2026, 6));
-            var bankSlip1 = new BankSlip("11111111111111111");
-            var bankSlip2 = new BankSlip("99999999999999999");
-
-            var order = new Order(newCustomer, creditCardCustomer2);
-            order.addOrderedItem(orderedItens1);
-            order.addOrderedItem(orderedItens2);
-            order.addOrderedItem(orderedItens3);
+//            var bikeMountain = productService.findProductById(340L);
+//            var squeezer = productService.findProductById(344L);
+//            var helmetDragonBorn = productService.findProductById(353L);
+//
+//            var orderedItens1 = new OrderItem(bikeMountain, 1);
+//            var orderedItens2 = new OrderItem(squeezer, 1);
+//            var orderedItens3 = new OrderItem(helmetDragonBorn, 1);
+//
+//            var creditCardCustomer1 = new CreditCard("4916396776205913", "Giovanna Gonçalves", "231", YearMonth.of(2030, 12));
+//            var creditCardCustomer2 = new CreditCard("4539069995203095", "Luiza Cavalcanti", "771", YearMonth.of(2026, 6));
+//            var bankSlip1 = new BankSlip("11111111111111111");
+//            var bankSlip2 = new BankSlip("99999999999999999");
+//
+//            var order = new Order(newCustomer, creditCardCustomer2);
+//            order.addOrderedItem(orderedItens1);
+//            order.addOrderedItem(orderedItens2);
+//            order.addOrderedItem(orderedItens3);
 
             //orderService.saveOrder(order);
 

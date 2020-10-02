@@ -59,11 +59,6 @@ public class CustomerBuilder {
         return this;
     }
 
-    public CustomerBuilder setAdressList(List<Address> adressList){
-        this.addressList = addressList;
-        return this;
-    }
-
     public CustomerBuilder addAddress(Address adress){
         this.addressList.add(adress);
         return this;
