@@ -41,6 +41,27 @@ public class BicycleShopApplication {
             List<Address> addressList = new ArrayList<>();
             addressList.add(address1);
 
+            var newAdress1 = new AddressBuilder()
+                    .setStreet("Camargo Schutz")
+                    .setDistrict("Vila Prado")
+                    .setCity("São Carlos")
+                    .setState("São Paulo")
+                    .setZipCode("13999420")
+                    .setNumber("1200")
+                    .setComplement("Próximo ao hospital")
+                    .createAddress();
+
+            var newAdress2 = new AddressBuilder()
+                    .setStreet("Rua Paraguai")
+                    .setDistrict("Vila Nery")
+                    .setCity("São Carlos")
+                    .setState("São Paulo")
+                    .setZipCode("13222420")
+                    .setNumber("920")
+                    .setComplement("Próximo ao centro")
+                    .createAddress();
+
+
             var newCustomer = new CustomerBuilder()
                     .setName("José")
                     .setLastName("Pedro")
@@ -50,9 +71,11 @@ public class BicycleShopApplication {
                     .setBirthday(LocalDate.of(2020,5,5))
                     .setEmail("josepedro@email.com")
                     .setAdressList(addressList)
+                    .addAddress(newAdress1)
+                    .addAddress(newAdress2)
                     .createCustomer();
 
-            customerService.saveCustomer(newCustomer);
+            //customerService.saveCustomer(newCustomer);
 
 
 
@@ -75,7 +98,7 @@ public class BicycleShopApplication {
             order.addOrderedItem(orderedItens2);
             order.addOrderedItem(orderedItens3);
 
-            orderService.saveOrder(order);
+            //orderService.saveOrder(order);
 
             //orderService.deleteOrderById(179L);
 

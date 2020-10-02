@@ -64,8 +64,13 @@ public class CustomerBuilder {
         return this;
     }
 
+    public CustomerBuilder addAddress(Address adress){
+        this.addressList.add(adress);
+        return this;
+    }
+
     public Customer createCustomer(){
-        return new Customer(name, lastName, cpf, mainPhone, secondaryPhone, birthday, email);
+        return new Customer(name, lastName, cpf, mainPhone, secondaryPhone, birthday, email, addressList);
     }
 
 

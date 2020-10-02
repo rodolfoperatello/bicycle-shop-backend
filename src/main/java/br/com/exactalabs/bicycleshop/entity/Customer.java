@@ -39,13 +39,13 @@ public class Customer {
     @NotEmpty(message = "A lista de endereços não pode estar vazia")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "customer_id")
-    private List<Address> addressList = new ArrayList<>();
+    private List<Address> addressList;
 
     public Customer(){
 
     }
 
-    public Customer(String name, String lastName, String cpf, String mainPhone, String secondaryPhone, LocalDate birthday, String email) {
+    public Customer(String name, String lastName, String cpf, String mainPhone, String secondaryPhone, LocalDate birthday, String email, List<Address> addressList) {
         this.name = name;
         this.lastName = lastName;
         this.cpf = cpf;
@@ -53,6 +53,7 @@ public class Customer {
         this.secondaryPhone = secondaryPhone;
         this.birthday = birthday;
         this.email = email;
+        this.addressList = addressList;
     }
 
     public Long getId() {
