@@ -16,7 +16,7 @@ public class Product {
     private String name;
     @NotNull(message = "A categoria não pode estar vazia")
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "productCategory_id")
+    @JoinColumn(name = "product_category_id")
     private ProductCategory productCategory;
     @NotNull(message = "O valor não pode ser nulo")
     @PositiveOrZero(message = "O valor deve ser maior ou igual a zero")

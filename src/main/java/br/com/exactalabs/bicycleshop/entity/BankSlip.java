@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "bankSlip")
+@PrimaryKeyJoinColumn(name = "payment_id")
 public class BankSlip extends Payment{
 
     @Id
