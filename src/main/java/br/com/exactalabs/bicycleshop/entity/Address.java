@@ -23,19 +23,21 @@ public class Address {
     private String zipcode;
     @NotBlank(message = "O número não pode ser vazio")
     private String number;
+    private String complement;
 
 
     public Address(){
 
     }
 
-    public Address(String street, String district, String city, String state, String zipcode, String number) {
+    public Address(String street, String district, String city, String state, String zipcode, String number, String complement) {
         this.street = street;
         this.district = district;
         this.city = city;
         this.state = state;
         this.zipcode = zipcode;
         this.number = number;
+        this.complement = complement;
     }
 
     public Long getId() {
@@ -94,10 +96,17 @@ public class Address {
         this.number = number;
     }
 
+    public String getComplement() {
+        return complement;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
+    }
 
     @Override
     public String toString() {
-        return "Adress{" +
+        return "Address{" +
                 "id=" + id +
                 ", street='" + street + '\'' +
                 ", district='" + district + '\'' +
@@ -105,6 +114,7 @@ public class Address {
                 ", state='" + state + '\'' +
                 ", zipcode='" + zipcode + '\'' +
                 ", number='" + number + '\'' +
+                ", complement='" + complement + '\'' +
                 '}';
     }
 }

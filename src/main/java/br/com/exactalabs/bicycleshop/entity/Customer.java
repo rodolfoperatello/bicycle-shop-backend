@@ -139,14 +139,16 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Client{" +
+        return "Customer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", email='" + email + '\'' +
                 ", mainPhone='" + mainPhone + '\'' +
                 ", secondaryPhone='" + secondaryPhone + '\'' +
                 ", birthday=" + birthday +
-                ", adressList=" + addressList +
+                ", addressList=" + addressList +
                 '}';
     }
 }

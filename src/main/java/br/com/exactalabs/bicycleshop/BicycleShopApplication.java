@@ -29,7 +29,7 @@ public class BicycleShopApplication {
             var productService = appContext.getBean(ProductService.class);
             var orderService = appContext.getBean(OrderService.class);
 
-            var newAdress = new Address("Rua", "District", "City", "State", "ZipCode", "Number");
+            var newAdress = new Address("Rua", "District", "City", "State", "ZipCode", "Number", "Próximo da coca cola");
             var newCustomer = new Customer("Rodolfo", "Peratello", "1111111111", "16999999999",
                     "", LocalDate.of(1991, 8, 7), "rodolfoperatello@teste.com", newAdress);
 
