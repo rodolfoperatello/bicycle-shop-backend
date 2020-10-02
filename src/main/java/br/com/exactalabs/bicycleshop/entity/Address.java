@@ -20,7 +20,7 @@ public class Address {
     @NotBlank(message = "O estado não pode ser vazio")
     private String state;
     @NotBlank(message = "O CEP não pode ser vazio")
-    private String zipcode;
+    private String zipCode;
     @NotBlank(message = "O número não pode ser vazio")
     private String number;
     private String complement;
@@ -35,7 +35,7 @@ public class Address {
         this.district = district;
         this.city = city;
         this.state = state;
-        this.zipcode = zipcode;
+        this.zipCode = zipcode;
         this.number = number;
         this.complement = complement;
     }
@@ -80,12 +80,12 @@ public class Address {
         this.state = state;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getNumber() {
@@ -112,7 +112,7 @@ public class Address {
                 ", district='" + district + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
-                ", zipcode='" + zipcode + '\'' +
+                ", zipcode='" + zipCode + '\'' +
                 ", number='" + number + '\'' +
                 ", complement='" + complement + '\'' +
                 '}';
