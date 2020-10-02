@@ -45,7 +45,7 @@ public class Customer {
 
     }
 
-    public Customer(String name, String lastName, String cpf, String mainPhone, String secondaryPhone, LocalDate birthday, String email, Address address) {
+    public Customer(String name, String lastName, String cpf, String mainPhone, String secondaryPhone, LocalDate birthday, String email) {
         this.name = name;
         this.lastName = lastName;
         this.cpf = cpf;
@@ -53,7 +53,6 @@ public class Customer {
         this.secondaryPhone = secondaryPhone;
         this.birthday = birthday;
         this.email = email;
-        this.addAdress(address);
     }
 
     public Long getId() {

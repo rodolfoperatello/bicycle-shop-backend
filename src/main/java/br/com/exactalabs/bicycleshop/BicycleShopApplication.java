@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class BicycleShopApplication {
@@ -29,11 +31,31 @@ public class BicycleShopApplication {
             var productService = appContext.getBean(ProductService.class);
             var orderService = appContext.getBean(OrderService.class);
 
-            var newAdress = new Address("Rua", "District", "City", "State", "ZipCode", "Number", "Próximo da coca cola");
-            var newCustomer = new Customer("Rodolfo", "Peratello", "1111111111", "16999999999",
-                    "", LocalDate.of(1991, 8, 7), "rodolfoperatello@teste.com", newAdress);
+//            var newAdress = new Address("Rua", "District", "City", "State", "ZipCode", "Number", "Próximo da coca cola");
+//            var newCustomer = new Customer("Rodolfo", "Peratello", "1111111111", "16999999999",
+//                    "", LocalDate.of(1991, 8, 7), "rodolfoperatello@teste.com", newAdress);
+
+            var address1 = new Address("Rua", "District", "City", "State",
+                    "ZipCode", "Number", "Próximo da coca cola");
+
+            List<Address> addressList = new ArrayList<>();
+            addressList.add(address1);
+
+            var newCustomer = new CustomerBuilder()
+                    .setName("José")
+                    .setLastName("Pedro")
+                    .setCpf("123213123")
+                    .setMainPhone("16988888888")
+                    .setSecondaryPhone("")
+                    .setBirthday(LocalDate.of(2020,5,5))
+                    .setEmail("josepedro@email.com")
+                    .setAdressList(addressList)
+                    .createCustomer();
 
             customerService.saveCustomer(newCustomer);
+
+
+
 
             var bikeMountain = productService.findProductById(340L);
             var squeezer = productService.findProductById(344L);
