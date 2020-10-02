@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 
 @SpringBootApplication
@@ -29,7 +30,8 @@ public class BicycleShopApplication {
             var orderService = appContext.getBean(OrderService.class);
 
             var newAdress = new Address("Rua", "District", "City", "State", "ZipCode", "Number");
-            var newCustomer = new Customer("Rodolfo", "Peratello", "16999999999", "", null, newAdress);
+            var newCustomer = new Customer("Rodolfo", "Peratello", "1111111111", "16999999999",
+                    "", LocalDate.of(1991, 8, 7), "rodolfoperatello@teste.com", newAdress);
 
             customerService.saveCustomer(newCustomer);
 
