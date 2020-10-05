@@ -30,7 +30,7 @@ public class Address {
 
     }
 
-    public Address(String street, String district, String city, String state, String zipcode, String number, String complement) {
+    private Address(String street, String district, String city, String state, String zipcode, String number, String complement) {
         this.street = street;
         this.district = district;
         this.city = city;
@@ -38,6 +38,61 @@ public class Address {
         this.zipCode = zipcode;
         this.number = number;
         this.complement = complement;
+    }
+
+    public static class AddressBuilder {
+
+        private String street;
+        private String district;
+        private String city;
+        private String state;
+        private String zipCode;
+        private String number;
+        private String complement;
+
+        public AddressBuilder(){
+
+        }
+
+        public AddressBuilder street(String street){
+            this.street = street;
+            return this;
+        }
+
+        public AddressBuilder district(String district){
+            this.district = district;
+            return this;
+        }
+
+        public AddressBuilder city(String city){
+            this.city = city;
+            return this;
+        }
+
+        public AddressBuilder state(String state){
+            this.state = state;
+            return this;
+        }
+
+        public AddressBuilder zipCode(String zipCode){
+            this.zipCode = zipCode;
+            return this;
+        }
+
+        public AddressBuilder number(String number){
+            this.number = number;
+            return this;
+        }
+
+        public AddressBuilder complement(String complement){
+            this.complement = complement;
+            return this;
+        }
+
+        public Address createAddress(){
+            return new Address(street, district, city, state, zipCode, number, complement);
+        }
+
     }
 
     public Long getId() {
@@ -117,5 +172,7 @@ public class Address {
                 ", complement='" + complement + '\'' +
                 '}';
     }
+
+
 }
 

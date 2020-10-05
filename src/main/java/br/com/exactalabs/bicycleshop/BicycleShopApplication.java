@@ -31,35 +31,16 @@ public class BicycleShopApplication {
             var productService = appContext.getBean(ProductService.class);
             var orderService = appContext.getBean(OrderService.class);
 
-//            var newAdress = new Address("Rua", "District", "City", "State", "ZipCode", "Number", "Próximo da coca cola");
-//            var newCustomer = new Customer("Rodolfo", "Peratello", "1111111111", "16999999999",
-//                    "", LocalDate.of(1991, 8, 7), "rodolfoperatello@teste.com", newAdress);
-
-            var address1 = new Address("Rua", "District", "City", "State",
-                    "ZipCode", "Number", "Próximo da coca cola");
-
-            List<Address> addressList = new ArrayList<>();
-            addressList.add(address1);
-
-            var newAdress1 = new AddressBuilder()
-                    .setStreet("Camargo Schutz")
-                    .setDistrict("Vila Prado")
-                    .setCity("São Carlos")
-                    .setState("São Paulo")
-                    .setZipCode("13999420")
-                    .setNumber("1200")
-                    .setComplement("Próximo ao hospital")
+            var newAdress1 = new Address.AddressBuilder()
+                    .street("Camargo Schutz")
+                    .district("Vila Prado")
+                    .city("São Carlos")
+                    .state("São Paulo")
+                    .zipCode("13999420")
+                    .number("1200")
+                    .complement("Próximo ao hospital")
                     .createAddress();
 
-            var newAdress2 = new AddressBuilder()
-                    .setStreet("Rua Paraguai")
-                    .setDistrict("Vila Nery")
-                    .setCity("São Carlos")
-                    .setState("São Paulo")
-                    .setZipCode("13222420")
-                    .setNumber("920")
-                    .setComplement("Próximo ao centro")
-                    .createAddress();
 
             var newCustomer = new CustomerBuilder()
                     .setName("José")
@@ -70,7 +51,6 @@ public class BicycleShopApplication {
                     .setBirthday(LocalDate.of(2020,5,5))
                     .setEmail("josepedro@email.com")
                     .addAddress(newAdress1)
-                    .addAddress(newAdress2)
                     .createCustomer();
 
             System.out.println(newCustomer);
