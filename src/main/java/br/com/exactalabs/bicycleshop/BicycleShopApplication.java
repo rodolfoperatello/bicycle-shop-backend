@@ -11,12 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-<<<<<<< HEAD
+
 import java.math.BigDecimal;
-=======
-import java.time.LocalDate;
->>>>>>> develop
-import java.time.YearMonth;
+
 
 @SpringBootApplication
 public class BicycleShopApplication {
