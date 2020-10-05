@@ -59,35 +59,29 @@ public class BicycleShopApplication {
 
 
 
+            var bikeMountain = productService.findProductById(379L);
+            var squeezer = productService.findProductById(383L);
+            var helmetDragonBorn = productService.findProductById(384L);
 
-//            var bikeMountain = productService.findProductById(340L);
-//            var squeezer = productService.findProductById(344L);
-//            var helmetDragonBorn = productService.findProductById(353L);
-//
-//            var orderedItens1 = new OrderItem(bikeMountain, 1);
-//            var orderedItens2 = new OrderItem(squeezer, 1);
-//            var orderedItens3 = new OrderItem(helmetDragonBorn, 1);
-//
-//            var creditCardCustomer1 = new CreditCard("4916396776205913", "Giovanna Gonçalves", "231", YearMonth.of(2030, 12));
+            var orderedItens1 = new OrderItem(bikeMountain, 1);
+            var orderedItens2 = new OrderItem(squeezer, 1);
+            var orderedItens3 = new OrderItem(helmetDragonBorn, 1);
+
+            var creditCardCustomer1 = new CreditCard("4916396776205913", "Giovanna Gonçalves", "231", YearMonth.of(2030, 12));
 //            var creditCardCustomer2 = new CreditCard("4539069995203095", "Luiza Cavalcanti", "771", YearMonth.of(2026, 6));
 //            var bankSlip1 = new BankSlip("11111111111111111");
 //            var bankSlip2 = new BankSlip("99999999999999999");
 //
-//            var order = new Order(newCustomer, creditCardCustomer2);
-//            order.addOrderedItem(orderedItens1);
-//            order.addOrderedItem(orderedItens2);
-//            order.addOrderedItem(orderedItens3);
+            var order = new Order(newCustomer, creditCardCustomer1);
+            order.addOrderedItem(orderedItens1);
+            order.addOrderedItem(orderedItens2);
+            order.addOrderedItem(orderedItens3);
 
-            //orderService.saveOrder(order);
+            orderService.saveOrder(order);
 
-            //orderService.deleteOrderById(179L);
+            //orderService.deleteOrderById(188L);
 
-            //System.out.println(orderService.findOrderById(180L));
-//            var orderToUpdate = orderService.findOrderById(180L);
-//            orderToUpdate.setOrderTotal(BigDecimal.valueOf(0));
-//            orderService.updateOrder(orderToUpdate);
 
-            //System.out.println(orderService.findAllOrder(0).getContent().toString());
 
             System.out.println("Spring bootado");
 
