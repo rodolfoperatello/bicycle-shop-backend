@@ -58,12 +58,12 @@ public class BicycleShopApplication {
             var squeezerSquirtle = new Product("Squeezer Squirtle", squeezerCategory, BigDecimal.valueOf(30.00));
             var capaceteDragonBorn = new Product("Capacete Dragon Born", helmetCategory, BigDecimal.valueOf(650.90));
 
-            productService.saveProduct(mountainBike);
-            productService.saveProduct(speedBike);
-            productService.saveProduct(chinatownBike);
-            productService.saveProduct(luvasTyson);
-            productService.saveProduct(squeezerSquirtle);
-            productService.saveProduct(capaceteDragonBorn);
+//            productService.saveProduct(mountainBike);
+//            productService.saveProduct(speedBike);
+//            productService.saveProduct(chinatownBike);
+//            productService.saveProduct(luvasTyson);
+//            productService.saveProduct(squeezerSquirtle);
+//            productService.saveProduct(capaceteDragonBorn);
 
 
 //            var bikeMountain = productService.findProductById(340L);
@@ -94,6 +94,8 @@ public class BicycleShopApplication {
 //            orderService.updateOrder(orderToUpdate);
 
             //System.out.println(orderService.findAllOrder(0).getContent().toString());
+
+            System.out.println(productService.findAllProductsByName("lu", 0).getContent());
 
             System.out.println("Spring bootado");
 

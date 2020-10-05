@@ -49,8 +49,9 @@ public class ProductService {
     }
 
     public Page<Product> findAllProductsByName(String name, Integer pageNumber){
+        String nameSearch = "%" + name + "%";
         var pageRequest = createPageRequest(pageNumber, 30);
-        return this.productRepository.findAllProductByNameLikeOrderByNameAsc(name, pageRequest);
+        return this.productRepository.findAllProductByNameLikeOrderByNameAsc(nameSearch, pageRequest);
     }
 
     public Page<Product> findAllProductsByCategory(String name, Integer pageNumber) {
