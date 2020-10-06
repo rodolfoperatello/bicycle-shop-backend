@@ -20,8 +20,6 @@ public class ProductCategory {
     @NotBlank(message = "O nome não pode estar vazio")
     private String name;
     @OneToMany(mappedBy = "productCategory", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    //@LazyCollection(LazyCollectionOption.FALSE)
-    //@NotEmpty(message = "A lista de produtos não pode estar vazia")
     private Collection<Product> productList = new ArrayList<>();
 
     public ProductCategory (){

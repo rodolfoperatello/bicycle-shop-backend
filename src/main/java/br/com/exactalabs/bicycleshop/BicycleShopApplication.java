@@ -57,7 +57,7 @@ public class BicycleShopApplication {
 
             //customerService.saveCustomer(customerToSave);
 
-            var customer = customerService.findCustomerById(customerToSave.getId());
+            var customer = customerService.findCustomerById(218L);
 
             var bikeCategoryToSave = new ProductCategory("Bike");
             var glovesCategoryToSave = new ProductCategory("Gloves");
