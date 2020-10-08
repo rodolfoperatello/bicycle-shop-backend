@@ -64,6 +64,7 @@ public class BicycleShopApplication {
             var squeezerCategoryToSave = new ProductCategory("Squeezer");
             var helmetCategoryToSave = new ProductCategory("Helmet");
 
+
 //            productCategoryService.saveCategory(bikeCategoryToSave);
 //            productCategoryService.saveCategory(glovesCategoryToSave);
 //            productCategoryService.saveCategory(squeezerCategoryToSave);
@@ -73,6 +74,7 @@ public class BicycleShopApplication {
             var glovesCategory = productCategoryService.findCategoryById(256L);
             var squeezerCategory = productCategoryService.findCategoryById(257L);
             var helmetCategory = productCategoryService.findCategoryById(258L);
+
 
             var mountainBikeToSave = new Product("Mountain Bike Everest", bikeCategory, BigDecimal.valueOf(2250.00));
             var speedBikeToSave = new Product("Speed Bike Emigrantes", bikeCategory, BigDecimal.valueOf(5640.00));
@@ -110,7 +112,7 @@ public class BicycleShopApplication {
             order.addOrderedItem(item2);
             order.addOrderedItem(item3);
 
-            //orderService.saveOrder(order);
+            orderService.saveOrder(order);
 
             //System.out.println(orderService.findOrderById(190L));
 
