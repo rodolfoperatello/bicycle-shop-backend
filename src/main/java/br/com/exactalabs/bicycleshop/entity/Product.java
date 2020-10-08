@@ -14,13 +14,13 @@ public class Product {
     private Long id;
     @NotBlank(message = "O nome não pode estar vazio")
     private String name;
+    @NotNull(message = "O valor não pode ser nulo")
+    @PositiveOrZero(message = "O valor deve ser maior ou igual a zero")
+    private BigDecimal price;
     @NotNull(message = "A categoria não pode estar vazia")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_category_id")
     private ProductCategory productCategory;
-    @NotNull(message = "O valor não pode ser nulo")
-    @PositiveOrZero(message = "O valor deve ser maior ou igual a zero")
-    private BigDecimal price;
 
     public Product(){
 

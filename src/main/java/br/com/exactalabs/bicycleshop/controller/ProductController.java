@@ -2,10 +2,7 @@ package br.com.exactalabs.bicycleshop.controller;
 
 import br.com.exactalabs.bicycleshop.entity.Product;
 import br.com.exactalabs.bicycleshop.service.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +17,23 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public Product findProductById(@PathVariable Long id){
+    public Product findProductById(@PathVariable(value = "id") Long id){
         return this.productService.findProductById(id);
     }
 
+    @GetMapping("/products")
+    public List<Product> findAllProducts(@RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
+        return this.productService.findAllProducts(pageNumber).getContent();
+    }
+
+    @PostMapping("/product")
+    public Product saveProduct(@RequestBody Product product){
+        return this.productService.saveProduct(product);
+    }
+
+    @PutMapping("/product")
+    public Product updateProduct(@RequestBody Product product){
+        return this.productService.updateProduct(product);
+    }
 
 }
