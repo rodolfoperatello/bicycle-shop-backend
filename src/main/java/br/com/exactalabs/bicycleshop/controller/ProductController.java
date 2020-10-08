@@ -16,13 +16,33 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/product/{id}")
-    public Product findProductById(@PathVariable(value = "id") Long id){
+    @GetMapping("/product/name")
+    public List<Product> findProductByName(
+            @RequestParam(value = "productName") String name,
+            @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
+        return this.productService.findAllProductsByName(name, pageNumber).getContent();
+    }
+
+    @GetMapping("/product/priceAsc")
+    public List<Product> findProductByPriceAsc(
+            @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber) {
+        return this.productService.findAllProductByPriceAsc(pageNumber).getContent();
+    }
+
+    @GetMapping("/product/priceDesc")
+    public List<Product> findProductByPriceDesc(
+            @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
+        return this.productService.findAllProductByPriceDesc(pageNumber).getContent();
+    }
+
+    @GetMapping("/product/id")
+    public Product findProductById(@RequestParam(value = "id") Long id){
         return this.productService.findProductById(id);
     }
 
     @GetMapping("/product")
-    public List<Product> findAllProducts(@RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
+    public List<Product> findAllProducts(
+            @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
         return this.productService.findAllProducts(pageNumber).getContent();
     }
 

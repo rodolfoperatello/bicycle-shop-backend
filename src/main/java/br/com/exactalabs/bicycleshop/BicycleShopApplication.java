@@ -55,7 +55,7 @@ public class BicycleShopApplication {
                     .addAddress(addressToSave)
                     .createCustomer();
 
-            //customerService.saveCustomer(customerToSave);
+            customerService.saveCustomer(customerToSave);
 
             var customer = customerService.findCustomerById(218L);
 
@@ -112,7 +112,7 @@ public class BicycleShopApplication {
             order.addOrderedItem(item2);
             order.addOrderedItem(item3);
 
-            orderService.saveOrder(order);
+            //orderService.saveOrder(order);
 
             //System.out.println(orderService.findOrderById(190L));
 
