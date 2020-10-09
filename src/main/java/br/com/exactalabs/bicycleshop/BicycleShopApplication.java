@@ -116,6 +116,8 @@ public class BicycleShopApplication {
 
             //System.out.println(orderService.findOrderById(190L));
 
+//            orderService.deleteOrderById(189L);
+
 
             System.out.println("Spring bootado");
 

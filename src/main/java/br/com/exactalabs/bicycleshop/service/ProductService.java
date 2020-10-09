@@ -26,6 +26,10 @@ public class ProductService {
         return pageRequest;
     }
 
+    public boolean existsById(Long id){
+        return this.productRepository.existsById(id);
+    }
+
     public Product saveProduct(Product product){
         return this.productRepository.save(product);
     }
@@ -39,8 +43,14 @@ public class ProductService {
         this.productRepository.deleteById(id);
     }
 
-    public Product updateProduct(Product product){
-        return this.productRepository.save(product);
+    public Product updateProduct(Long id, Product product){
+
+        var productToUpdate = findProductById(id);
+        productToUpdate.setName(product.getName());
+        productToUpdate.setPrice(product.getPrice());
+        productToUpdate.setProductCategory(product.getProductCategory());
+
+        return this.productRepository.save(productToUpdate);
     }
 
     public Page<Product> findAllProducts(Integer pageNumber){

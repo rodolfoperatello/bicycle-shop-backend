@@ -2,6 +2,7 @@ package br.com.exactalabs.bicycleshop.controller;
 
 import br.com.exactalabs.bicycleshop.entity.Product;
 import br.com.exactalabs.bicycleshop.service.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,49 +17,63 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/product/name")
-    public List<Product> findProductByName(
+    @GetMapping("/product")
+    public ResponseEntity<List<Product>> findAllProducts(
+            @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
+        var productList = this.productService.findAllProducts(pageNumber).getContent();
+        return ResponseEntity.ok(productList);
+    }
+
+    @GetMapping("/product/")
+    public ResponseEntity<Product> findProductById(@RequestParam(value = "id") Long id){
+        var product = this.productService.findProductById(id);
+        return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/product/name/")
+    public ResponseEntity<List<Product>> findProductByName(
             @RequestParam(value = "productName") String name,
             @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
-        return this.productService.findAllProductsByName(name, pageNumber).getContent();
+        var productList = this.productService.findAllProductsByName(name, pageNumber).getContent();
+        return ResponseEntity.ok(productList);
     }
 
-    @GetMapping("/product/priceAsc")
-    public List<Product> findProductByPriceAsc(
+    @GetMapping("/product/priceAsc/")
+    public ResponseEntity<List<Product>> findProductByPriceAsc(
             @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber) {
-        return this.productService.findAllProductByPriceAsc(pageNumber).getContent();
+        var productList = this.productService.findAllProductByPriceAsc(pageNumber).getContent();
+        return ResponseEntity.ok(productList);
     }
 
-    @GetMapping("/product/priceDesc")
-    public List<Product> findProductByPriceDesc(
+    @GetMapping("/product/priceDesc/")
+    public ResponseEntity<List<Product>> findProductByPriceDesc(
             @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
-        return this.productService.findAllProductByPriceDesc(pageNumber).getContent();
-    }
-
-    @GetMapping("/product/id")
-    public Product findProductById(@RequestParam(value = "id") Long id){
-        return this.productService.findProductById(id);
-    }
-
-    @GetMapping("/product")
-    public List<Product> findAllProducts(
-            @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
-        return this.productService.findAllProducts(pageNumber).getContent();
+        var productList = this.productService.findAllProductByPriceDesc(pageNumber).getContent();
+        return ResponseEntity.ok(productList);
     }
 
     @PostMapping("/product")
-    public Product saveProduct(@RequestBody Product product){
-        return this.productService.saveProduct(product);
+    public ResponseEntity<Product> saveProduct(@RequestBody Product product){
+        var newProduct = this.productService.saveProduct(product);
+        return ResponseEntity.ok(newProduct);
     }
 
-    @PutMapping("/product")
-    public Product updateProduct(@RequestBody Product product){
-        return this.productService.updateProduct(product);
+    @PutMapping("/product/")
+    public ResponseEntity<Product> updateProduct(@RequestParam Long id, @RequestBody Product product){
+        if (! (this.productService.existsById(id))) {
+            return ResponseEntity.noContent().build();
+        }
+        var productToUpdate = this.productService.updateProduct(id, product);
+        return ResponseEntity.ok(productToUpdate);
     }
 
-    @DeleteMapping("/product/id")
-    public void deleteProductById(@RequestParam(value = "id") Long id){
+    @DeleteMapping("/product/")
+    public ResponseEntity<Product> deleteProductById(@RequestParam(value = "id") Long id){
+        if (! (this.productService.existsById(id)) ){
+            return ResponseEntity.notFound().build();
+        }
         this.productService.deleteProductById(id);
+        return ResponseEntity.ok().build();
     }
 
 }
