@@ -2,13 +2,15 @@ package br.com.exactalabs.bicycleshop.controller;
 
 import br.com.exactalabs.bicycleshop.entity.Product;
 import br.com.exactalabs.bicycleshop.service.ProductService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import static java.util.Objects.isNull;
+
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/product")
 public class ProductController {
 
     private final ProductService productService;
@@ -17,63 +19,56 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/product")
-    public ResponseEntity<List<Product>> findAllProducts(
+    @GetMapping
+    public ResponseEntity<?> findAllProducts(
             @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
         var productList = this.productService.findAllProducts(pageNumber).getContent();
         return ResponseEntity.ok(productList);
     }
 
-    @GetMapping("/product/")
-    public ResponseEntity<Product> findProductById(@RequestParam(value = "id") Long id){
+    @GetMapping(value = "/id")
+    public ResponseEntity<?> findProductById(@RequestParam Long id){
         var product = this.productService.findProductById(id);
         return ResponseEntity.ok(product);
     }
 
-    @GetMapping("/product/name/")
-    public ResponseEntity<List<Product>> findProductByName(
+    @GetMapping(value = "/name")
+    public ResponseEntity<?> findProductByName(
             @RequestParam(value = "productName") String name,
             @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
         var productList = this.productService.findAllProductsByName(name, pageNumber).getContent();
         return ResponseEntity.ok(productList);
     }
 
-    @GetMapping("/product/priceAsc/")
-    public ResponseEntity<List<Product>> findProductByPriceAsc(
+    @GetMapping(value = "/priceAsc")
+    public ResponseEntity<?> findProductByPriceAsc(
             @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber) {
         var productList = this.productService.findAllProductByPriceAsc(pageNumber).getContent();
         return ResponseEntity.ok(productList);
     }
 
-    @GetMapping("/product/priceDesc/")
-    public ResponseEntity<List<Product>> findProductByPriceDesc(
+    @GetMapping(value = "/priceDesc")
+    public ResponseEntity<?> findProductByPriceDesc(
             @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
         var productList = this.productService.findAllProductByPriceDesc(pageNumber).getContent();
         return ResponseEntity.ok(productList);
     }
 
-    @PostMapping("/product")
-    public ResponseEntity<Product> saveProduct(@RequestBody Product product){
+    @PutMapping
+    public ResponseEntity<?> updateProduct(@RequestParam Long id, @RequestBody Product product){
+        this.productService.updateProduct(id, product);
+        return ResponseEntity.accepted().body(product);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> saveProduct(@RequestBody Product product){
         var newProduct = this.productService.saveProduct(product);
-        return ResponseEntity.ok(newProduct);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newProduct);
     }
 
-    @PutMapping("/product/")
-    public ResponseEntity<Product> updateProduct(@RequestParam Long id, @RequestBody Product product){
-        if (! (this.productService.existsById(id))) {
-            return ResponseEntity.noContent().build();
-        }
-        var productToUpdate = this.productService.updateProduct(id, product);
-        return ResponseEntity.ok(productToUpdate);
+    @DeleteMapping
+    public ResponseEntity<?> deleteProductById(@RequestParam Long id){
+        productService.deleteProductById(id);
+        return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).body("PRODUCT SUCCESSFULLY DELETED");
     }
-
-    @DeleteMapping("/product/")
-    public ResponseEntity<Product> deleteProductById(@RequestParam(value = "id") Long id){
-        if (! (this.productService.existsById(id)) ){
-            return ResponseEntity.notFound().build();
-        }
-        this.productService.deleteProductById(id);
-        return ResponseEntity.ok().build();
-    }
-
 }

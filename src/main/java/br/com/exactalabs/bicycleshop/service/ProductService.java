@@ -1,14 +1,12 @@
 package br.com.exactalabs.bicycleshop.service;
 
-
 import br.com.exactalabs.bicycleshop.entity.Product;
-import br.com.exactalabs.bicycleshop.entity.ProductCategory;
-import br.com.exactalabs.bicycleshop.repository.ProductCategoryRepository;
 import br.com.exactalabs.bicycleshop.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import javax.transaction.Transactional;
 
 
 @Service
@@ -26,31 +24,27 @@ public class ProductService {
         return pageRequest;
     }
 
-    public boolean existsById(Long id){
-        return this.productRepository.existsById(id);
-    }
-
+    @Transactional
     public Product saveProduct(Product product){
         return this.productRepository.save(product);
     }
 
-
-    public Product findProductById(Long id){
-        return this.productRepository.findById(id).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
-    }
-
+    @Transactional
     public void deleteProductById(Long id) {
         this.productRepository.deleteById(id);
     }
 
+    @Transactional
     public Product updateProduct(Long id, Product product){
+        var productDB = findProductById(id);
+        product.setName(productDB.getName());
+        product.setPrice(productDB.getPrice());
+        product.setProductCategory(productDB.getProductCategory());
+        return this.productRepository.save(product);
+    }
 
-        var productToUpdate = findProductById(id);
-        productToUpdate.setName(product.getName());
-        productToUpdate.setPrice(product.getPrice());
-        productToUpdate.setProductCategory(product.getProductCategory());
-
-        return this.productRepository.save(productToUpdate);
+    public Product findProductById(Long id){
+        return this.productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
     }
 
     public Page<Product> findAllProducts(Integer pageNumber){
