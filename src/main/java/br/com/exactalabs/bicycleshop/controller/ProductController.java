@@ -24,15 +24,15 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }
 
-    @GetMapping(value = "/id")
-    public ResponseEntity<?> findProductById(@RequestParam Long id){
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<?> findProductById(@PathVariable Long id){
         var product = this.productService.findProductById(id);
         return ResponseEntity.status(HttpStatus.OK).body(product);
     }
 
-    @GetMapping(value = "/name")
+    @GetMapping(value = "/name/{name}")
     public ResponseEntity<?> findProductByName(
-            @RequestParam(value = "productName") String name,
+            @PathVariable String name,
             @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber){
         var productList = this.productService.findAllProductsByName(name, pageNumber).getContent();
         return ResponseEntity.status(HttpStatus.OK).body(productList);
@@ -52,8 +52,8 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }
 
-    @PutMapping
-    public ResponseEntity<?> updateProduct(@RequestParam Long id, @RequestBody Product product){
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody Product product){
         this.productService.updateProduct(id, product);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(product);
     }
