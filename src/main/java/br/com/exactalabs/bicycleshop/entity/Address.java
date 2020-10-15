@@ -20,22 +20,79 @@ public class Address {
     @NotBlank(message = "O estado não pode ser vazio")
     private String state;
     @NotBlank(message = "O CEP não pode ser vazio")
-    private String zipcode;
+    private String zipCode;
     @NotBlank(message = "O número não pode ser vazio")
     private String number;
+    private String complement;
 
 
     public Address(){
 
     }
 
-    public Address(String street, String district, String city, String state, String zipcode, String number) {
+    private Address(String street, String district, String city, String state, String zipcode, String number, String complement) {
         this.street = street;
         this.district = district;
         this.city = city;
         this.state = state;
-        this.zipcode = zipcode;
+        this.zipCode = zipcode;
         this.number = number;
+        this.complement = complement;
+    }
+
+    public static class AddressBuilder {
+
+        private String street;
+        private String district;
+        private String city;
+        private String state;
+        private String zipCode;
+        private String number;
+        private String complement;
+
+        public AddressBuilder(){
+
+        }
+
+        public AddressBuilder street(String street){
+            this.street = street;
+            return this;
+        }
+
+        public AddressBuilder district(String district){
+            this.district = district;
+            return this;
+        }
+
+        public AddressBuilder city(String city){
+            this.city = city;
+            return this;
+        }
+
+        public AddressBuilder state(String state){
+            this.state = state;
+            return this;
+        }
+
+        public AddressBuilder zipCode(String zipCode){
+            this.zipCode = zipCode;
+            return this;
+        }
+
+        public AddressBuilder number(String number){
+            this.number = number;
+            return this;
+        }
+
+        public AddressBuilder complement(String complement){
+            this.complement = complement;
+            return this;
+        }
+
+        public Address createAddress(){
+            return new Address(street, district, city, state, zipCode, number, complement);
+        }
+
     }
 
     public Long getId() {
@@ -78,12 +135,12 @@ public class Address {
         this.state = state;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getNumber() {
@@ -94,18 +151,28 @@ public class Address {
         this.number = number;
     }
 
+    public String getComplement() {
+        return complement;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
+    }
 
     @Override
     public String toString() {
-        return "Adress{" +
+        return "Address{" +
                 "id=" + id +
                 ", street='" + street + '\'' +
                 ", district='" + district + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
-                ", zipcode='" + zipcode + '\'' +
+                ", zipcode='" + zipCode + '\'' +
                 ", number='" + number + '\'' +
+                ", complement='" + complement + '\'' +
                 '}';
     }
+
+
 }
 

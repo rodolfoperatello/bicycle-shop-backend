@@ -1,25 +1,22 @@
 package br.com.exactalabs.bicycleshop.service;
 
-
 import br.com.exactalabs.bicycleshop.entity.Product;
-import br.com.exactalabs.bicycleshop.entity.ProductCategory;
-import br.com.exactalabs.bicycleshop.repository.ProductCategoryRepository;
 import br.com.exactalabs.bicycleshop.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import javax.transaction.Transactional;
 
 
 @Service
 public class ProductService {
 
     private ProductRepository productRepository;
-    private ProductCategoryRepository productCategoryRepository;
 
-    public ProductService(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository){
+
+    public ProductService(ProductRepository productRepository){
         this.productRepository = productRepository;
-        this.productCategoryRepository = productCategoryRepository;
     }
 
     private PageRequest createPageRequest(Integer pageNumber, Integer pageSize){
@@ -27,28 +24,27 @@ public class ProductService {
         return pageRequest;
     }
 
-    public ProductCategory findCategoryById(Long id){
-        return this.productCategoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+    @Transactional
+    public Product saveProduct(Product product){
+        return this.productRepository.save(product);
     }
 
-    public void deleteCategoryById(Long id) {
-        this.productCategoryRepository.deleteById(id);
-    }
-
-    public void updateCategory(ProductCategory productCategory) {
-        this.productCategoryRepository.save(productCategory);
-    }
-
-    public Product findProductById(Long id){
-        return this.productRepository.findById(id).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
-    }
-
+    @Transactional
     public void deleteProductById(Long id) {
         this.productRepository.deleteById(id);
     }
 
-    public Product updateProduct(Product product){
+    @Transactional
+    public Product updateProduct(Long id, Product productUpdate){
+        var product = findProductById(id);
+        product.setName(productUpdate.getName());
+        product.setPrice(productUpdate.getPrice());
+        product.setProductCategory(productUpdate.getProductCategory());
         return this.productRepository.save(product);
+    }
+
+    public Product findProductById(Long id){
+        return this.productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
     }
 
     public Page<Product> findAllProducts(Integer pageNumber){
@@ -57,8 +53,9 @@ public class ProductService {
     }
 
     public Page<Product> findAllProductsByName(String name, Integer pageNumber){
+        String nameSearch = "%" + name + "%";
         var pageRequest = createPageRequest(pageNumber, 30);
-        return this.productRepository.findAllProductByNameLikeOrderByNameAsc(name, pageRequest);
+        return this.productRepository.findAllProductByNameLikeOrderByNameAsc(nameSearch, pageRequest);
     }
 
     public Page<Product> findAllProductsByCategory(String name, Integer pageNumber) {
@@ -75,6 +72,4 @@ public class ProductService {
         var pageRequest = createPageRequest(pageNumber, 30);
         return this.productRepository.findAllProductByOrderByPriceDesc(pageRequest);
     }
-
-
 }
